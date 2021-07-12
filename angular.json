@@ -33,6 +33,7 @@
             ],
             "styles": [
               "src/styles.sass",
+              "node_modules/bootstrap/scss/bootstrap.scss",
               "node_modules/@ng-select/ng-select/themes/default.theme.css"
               
             ],
@@ -58,13 +59,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "4mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb"
                 }
               ]
             }
