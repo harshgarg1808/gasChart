@@ -31,17 +31,17 @@
 <!-- Toolbar -->
 <div class="router-container">
 
-  <div class="main-content">
+  <!-- <div class="main-content"> -->
     
-    <div class="toolbar row" role="banner">
-      <span>Gas Chart</span>
+    <div class="toolbar " role="banner">
+      <span>Gas Emmisons Graph</span>
     </div>
 
     <div class="content" >
-        <h3 class="pl-3"> Gas Emmisons Graph</h3>
+        <!-- <h3 class="pl-3"> Gas Emmisons Graph</h3> -->
         
         <div class="view-content-login view-content">
-          <div class="row ">
+          <div class="row " style="margin-top: 15px;">
               <div class="col-4 ">
                 <label>Country<span class="text-danger" >*</span></label>
                 <ng-select [(ngModel)]="payload['countryId']" placeholder = 'Select Country' [clearable]= 'true' [multiple] = 'true'  
@@ -76,11 +76,11 @@
               </div>
 
               <div class="col-1 d-flex align-items-end justify-content-end" >
-                <button class="btn btn-outline-success" (click) = 'search()'> Search </button>
+                <button class="btn btn-success btn-block" (click) = 'search()'> Search </button>
               </div>
 
               <div class="col-1 d-flex align-items-end justify-content-end" >
-                <button class="btn btn-outline-secondary" (click) = 'clearData()'> Clear </button>
+                <button class="btn btn-danger btn-block" (click) = 'clearData()'> Clear </button>
               </div>
               
           </div>
@@ -104,7 +104,7 @@
     </div> 
 
 
-  </div>
+  <!-- </div> -->
   
 
 </div>
