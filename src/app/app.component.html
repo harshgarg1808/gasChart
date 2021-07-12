@@ -1,0 +1,112 @@
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+
+</style>
+
+<!-- Toolbar -->
+<div class="router-container">
+
+  <div class="main-content">
+    
+    <div class="toolbar row" role="banner">
+      <span>Gas Chart</span>
+    </div>
+
+    <div class="content" >
+        <h3 class="pl-3"> Gas Emmisons Graph</h3>
+        
+        <div class="view-content-login view-content">
+          <div class="row ">
+              <div class="col-4 ">
+                <label>Country<span class="text-danger" >*</span></label>
+                <ng-select [(ngModel)]="payload['countryId']" placeholder = 'Select Country' [clearable]= 'true' [multiple] = 'true'  
+                >
+                    <ng-option *ngFor="let country of countries" [value]="country.name">{{country.name}}</ng-option>
+                </ng-select>
+      
+              </div>
+      
+              <div class="col-2 ">
+                <label>From Date<span class="text-danger" >*</span></label>
+                <ng-select [(ngModel)]="payload['fromDate']" placeholder = 'Select'>
+                    <ng-option *ngFor="let year of date" [value]="year.name">{{year.name}}</ng-option>
+                </ng-select>
+      
+              </div>
+      
+              <div class="col-2 ">
+                <label>To Date<span class="text-danger" >*</span></label>
+                <ng-select [(ngModel)]="payload['toDate']" placeholder = 'Select'>
+                    <ng-option *ngFor="let year of date" [value]="year.name">{{year.name}}</ng-option>
+                </ng-select>
+      
+              </div>
+
+              <div class="col-2 ">
+                <label>Category<span class="text-danger" >*</span></label>
+                <ng-select [(ngModel)]="payload['category']" placeholder = 'Select'>
+                    <ng-option *ngFor="let cat of category" [value]="cat.name">{{cat.name}}</ng-option>
+                </ng-select>
+      
+              </div>
+
+              <div class="col-1 d-flex align-items-end justify-content-end" >
+                <button class="btn btn-outline-success" (click) = 'search()'> Search </button>
+              </div>
+
+              <div class="col-1 d-flex align-items-end justify-content-end" >
+                <button class="btn btn-outline-secondary" (click) = 'clearData()'> Clear </button>
+              </div>
+              
+          </div>
+
+          
+          <div class="graph-container" *ngIf = 'showgraph' >
+            <app-line-graph   [chartData]="chartData"></app-line-graph>
+          </div>
+            
+          <div class="graph-container" *ngIf = 'noData' style="color: #d23b64;">
+              Please Select Appropriate parameters.
+          </div>
+                
+          <div class="graph-container" *ngIf = 'loading' style="color: #3bd26d;">
+              Loading...
+          </div>
+
+
+        </div>
+     
+    </div> 
+
+
+  </div>
+  
+
+</div>
+
+<router-outlet></router-outlet>

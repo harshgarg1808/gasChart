@@ -1,0 +1,94 @@
+$headerH: 8vh
+$viewH: 92vh
+$fontFamily:'Karla'
+$fontFamilyBold:'Karla-Bold'
+$primary: #ffffff
+$primaryText: rgba(0, 0, 0, 0.7)
+$secondary: #123787
+$secondaryText: #FFFFFF
+$sidemenuBackground:#ffffff
+$sidemenuText:rgba(0,0,0,0.7)
+
+    
+.toolbar 
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    height: 5vh
+    display: flex
+    align-items: center
+    background-color: #1976d2
+    color: white
+    font-weight: 600
+    justify-content: center
+  
+.content
+    position: absolute
+    top: 0
+    height: 95vh
+    width: 100%
+    margin-top: 5vh
+
+
+@mixin verticalCenter
+    display: flex
+
+
+.route-header
+    @include verticalCenter
+    margin-bottom: 1rem
+
+.router-container
+    height: 100%
+    width: 100%
+    display: flex
+
+
+.main-content
+    height: 100%
+    width: 85vw
+    transition: all 0.3s
+
+
+.main-content-expanded
+    height: 100%
+    width: 95vw
+    transition: all 0.3s
+
+
+.main-content-login
+    height: 100%
+    width: 100%
+
+
+//VIEW CSS
+.view-content-login
+    height: 100vh
+    width: 100vw
+
+
+.view-content
+    position: relative
+    height: $viewH
+    width: 100%
+    padding: 1.5rem
+    overflow-y: auto
+    overflow-x: hidden
+
+
+@mixin perfectCenter
+    display: flex
+    justify-content: center
+    align-items: center
+
+
+.graph-container
+    @include perfectCenter
+    background-color: white
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)
+    height: 60vh
+    width: 100%
+    margin-top: 5rem
+
+  
