@@ -4370,7 +4370,7 @@ export class GraphDataService {
         },
       ],
 
-      "name": "Croatia",
+      "name": "Romania",
       "type": "line"
     },
     {
