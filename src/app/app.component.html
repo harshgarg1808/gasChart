@@ -42,42 +42,50 @@
         
         <div class="view-content-login view-content">
           <div class="row " style="margin-top: 15px;">
-              <div class="col-4 ">
+              <div class="col-5 ">
                 <label>Country<span class="text-danger" >*</span></label>
-                <ng-select [(ngModel)]="payload['countryId']" placeholder = 'Select Country' [clearable]= 'true' [multiple] = 'true'  
-                >
-                    <ng-option *ngFor="let country of countries" [value]="country.name">{{country.name}}</ng-option>
+                <ng-select  [(ngModel)]="payload['countryId']" placeholder = 'Select Country' [clearable]= 'true' [multiple] = 'true' (ngModelChange)="search()">
+                  <ng-option  *ngFor="let country of countries" [value]="country.name">{{country.name}}</ng-option> 
+                  <!-- <ng-option  *ngFor="let country of countries" [value]="country.name"><a [routerLink]="[]" [queryParams]="{ countryId: country.name }" queryParamsHandling="merge">{{country.name}}</a></ng-option>  -->
+
                 </ng-select>
       
               </div>
       
               <div class="col-2 ">
                 <label>From Date<span class="text-danger" >*</span></label>
-                <ng-select [(ngModel)]="payload['fromDate']" placeholder = 'Select'>
-                    <ng-option *ngFor="let year of date" [value]="year.name">{{year.name}}</ng-option>
+                <ng-select  [(ngModel)]="payload['fromDate']" placeholder = 'Select' (ngModelChange)="search()">
+                  <ng-option  *ngFor="let year of date" [value]="year.name"> {{year.name}}</ng-option>
+                  <!-- <ng-option  *ngFor="let year of date" [value]="year.name"> <a [routerLink]="[]" [queryParams]="{ fromDate: year.name }" queryParamsHandling="merge" >{{year.name}}</a></ng-option> -->
+
                 </ng-select>
       
               </div>
       
               <div class="col-2 ">
                 <label>To Date<span class="text-danger" >*</span></label>
-                <ng-select [(ngModel)]="payload['toDate']" placeholder = 'Select'>
-                    <ng-option *ngFor="let year of date" [value]="year.name">{{year.name}}</ng-option>
+                <ng-select  [(ngModel)]="payload['toDate']" placeholder = 'Select' (ngModelChange)="search()">
+                  <ng-option  *ngFor="let year of date" [value]="year.name">{{year.name}}</ng-option>  
+                  <!-- <ng-option  *ngFor="let year of date" [value]="year.name"><a [routerLink]="[]" [queryParams]="{ toDate: year.name }" queryParamsHandling="merge">{{year.name}}</a></ng-option>   -->
+
                 </ng-select>
       
               </div>
 
               <div class="col-2 ">
                 <label>Category<span class="text-danger" >*</span></label>
-                <ng-select [(ngModel)]="payload['category']" placeholder = 'Select'>
-                    <ng-option *ngFor="let cat of category" [value]="cat.name">{{cat.name}}</ng-option>
+                <ng-select  [(ngModel)]="payload['category']" placeholder = 'Select' (ngModelChange)="search()">
+                  <ng-option  *ngFor="let cat of category" [value]="cat.name">{{cat.name}}</ng-option>  
+                  <!-- <ng-option  *ngFor="let cat of category" [value]="cat.name"><a [routerLink]="[]" [queryParams]="{ category: cat.name }" queryParamsHandling="merge">{{cat.name}}</a></ng-option>   -->
+
+
                 </ng-select>
       
               </div>
-
+<!-- 
               <div class="col-1 d-flex align-items-end justify-content-end" >
                 <button class="btn btn-success btn-block" (click) = 'search()'> Search </button>
-              </div>
+              </div> -->
 
               <div class="col-1 d-flex align-items-end justify-content-end" >
                 <button class="btn btn-danger btn-block" (click) = 'clearData()'> Clear </button>

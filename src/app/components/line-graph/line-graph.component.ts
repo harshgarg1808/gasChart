@@ -18,6 +18,7 @@ export type ChartOptions = {
   xaxis?: ApexXAxis | any;
   yaxis?: ApexYAxis | any;
   legend?: ApexLegend | any;
+  // animations?: ApexChart | any;
   dataLabels?: ApexDataLabels | any;
   markers?: ApexMarkers | any;
   plotOptions?: ApexPlotOptions | any;
@@ -54,6 +55,20 @@ export class LineGraphComponent implements OnInit {
           enabled: false,
         },
         
+        animations: {
+          enabled: true,
+          easing: 'easeinout',
+          speed: 800,
+          animateGradually: {
+              enabled: true,
+              delay: 100
+          },
+          dynamicAnimation: {
+              enabled: false,
+              // speed: 350
+          }
+        }
+
       },
       
       // dataLabels: {
@@ -96,6 +111,8 @@ export class LineGraphComponent implements OnInit {
         },
       },
       
+      
+
     };
   
   }

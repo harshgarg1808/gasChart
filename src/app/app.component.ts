@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {GraphDataService} from '../app/service/graph-data.service'
-import { Observable } from 'rxjs';
+import {jsonFile} from  '../app/json/jsonFile'
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/internal/operators/switchMap';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,8 @@ import { Observable } from 'rxjs';
  
 })
 export class AppComponent {
-  
+  jsonObj: any = jsonFile;
+
   title = 'gasChart';
   seriesObj : any;
   seriesData : any;
@@ -18,16 +21,18 @@ export class AppComponent {
   loading = false;
 
   payload : any = {
-    countryId: [],
-    fromDate:  '',
-    toDate :  '',
-    category: ''
+    countryId: ["Australia"],
+    fromDate:  '1990',
+    toDate :  '1991',
+    category: 'CO2'
   
   }
 
   constructor(
-    private graphData: GraphDataService) {}
+    private graphData: GraphDataService,
+    private route: ActivatedRoute) {}
 
+  
   
   chartData:any = {
     series: [],
@@ -39,93 +44,39 @@ export class AppComponent {
     legend: true
   };
 
+ //Default values
   date = [
-      { id: 1, name: '1990' },
-      { id: 2, name: '1991' },
-      { id: 3, name: '1992' },
-      { id: 4, name: '1993' },
-      { id: 5, name: '1994' },
-      { id: 6, name: '1995' },
-      { id: 7, name: '1996' },
-      { id: 8, name: '1997' },
-      { id: 9, name: '1998' },
-      { id: 10, name: '1999' },
-      { id: 11, name: '2000' },
-      { id: 12, name: '2001' },
-      { id: 13, name: '2002' },
-      { id: 14, name: '2002' },
-      { id: 15, name: '2003' },
-      { id: 16, name: '2004' },
-      { id: 17, name: '2005' },
-      { id: 18, name: '2006' },
-      { id: 19, name: '2007' },
-      { id: 20, name: '2008' },
-      { id: 21, name: '2009' },
-      { id: 22, name: '2010' },
-      { id: 23, name: '2011' },
-      { id: 24, name: '2012' },
-      { id: 25, name: '2013' },
-      { id: 26, name: '2014' },
+    { id: 1, name: '1990' },
 
   ];
-
   countries = [
-    
     {  name: 'Australia' },
-    {  name: 'Austria' },
-    {  name: 'Belarus' },
-    {  name: 'Belgium' },
-    {  name: 'Bulgaria' },
-    {  name: 'Canada' },
-    {  name: 'Croatia' },
-    {  name: 'Cyprus' },
-    {  name: 'Czech Republic' },
-    {  name: 'Denmark' },
-    {  name: 'Estonia' },
-    {  name: 'European Union' },
-    {  name: 'Finland' },
-    {  name: 'France' },
-    {  name: 'Germany' },
-    {  name: 'Greece' },
-    {  name: 'Hungary' },
-    {  name: 'Iceland' },
-    {  name: 'Ireland' },
-    {  name: 'Italy' },
-    {  name: 'Japan' },
-    {  name: 'Latvia' },
-    {  name: 'Liechtenstein' },
-    {  name: 'Lithuania' },
-    {  name: 'Luxembourg' },
-    {  name: 'Malta' },
-    {  name: 'Monaco' },
-    {  name: 'Netherlands' },
-    {  name: 'New Zealand' },
-    {  name: 'Norway' },
-    {  name: 'Poland' },
-    {  name: 'Portugal' },
-    {  name: 'Romania' },
-    {  name: 'Russian Federationlta' },
-    {  name: 'Slovakia' },
-    {  name: 'Slovenia' },
-    {  name: 'Spain' },
-    {  name: 'Sweden' },
-    {  name: 'Switzerland' },
-    {  name: 'Turkey' },
-    {  name: 'Ukraine' },
-    {  name: 'United Kingdom' },
-    {  name: 'United States of America' },  
   ];
-
   category = [
     {  name: 'CO2' },
-    {  name: 'GHGS' },
-    {  name: 'HFCS' },
-    {  name: 'CH4' },
-    {  name: 'NF3' },
-    {  name: 'N2o' },
-    {  name: 'PFCS' },
-    {  name: 'SF6' },
   ];
+
+  ngOnInit(): void {
+    //GET PAGE INFO
+    
+    this.date = this.jsonObj.date;
+    this.countries = this.jsonObj.countries;
+    this.category = this.jsonObj.category;
+  
+    this.getgraphData()
+
+    // this.route.queryParams.subscribe(queryParams => {
+     
+    //   this.payload['countryId'] = queryParams.countryId;
+    //   this.payload['fromDate'] = queryParams.fromDate;
+    //   this.payload['toDate'] = queryParams.toDate;
+    //   this.payload['category'] = queryParams.category;
+
+    // });
+
+  }
+
+ 
 
   getgraphData(){
 
@@ -146,11 +97,19 @@ export class AppComponent {
     else{
       this.chartData['series'] = this.graphData.findData(this.payload);
 
+      if(this.chartData['series'].length === 0){
+        this.noData = true;
+        this.showgraph = false;
+      }else{
+        this.showgraph =  true;
+        this.noData = false;
+      }
+
       if(this.payload['category']){
         this.chartData['yAxis'] = this.payload['category'];
       }
 
-      this.showgraph =  true;
+      
 
       console.log("series" , this.chartData['series']);
     }
@@ -165,14 +124,22 @@ export class AppComponent {
     setTimeout(() => {
       this.loading = false;
       this.getgraphData();
-    }, 2000);
+    }, 500);
 
+    // this.getgraphData()
   }
 
   clearData(){
-    this.payload = {};
+    this.payload = {
+      countryId: [],
+      fromDate:  null,
+      toDate :  null,
+      category: null
+    };
     this.showgraph = false;
     this.noData = true;
+    console.log(this.payload);
+    
   }
 
 }
