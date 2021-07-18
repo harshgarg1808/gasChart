@@ -1,3 +1,5 @@
+//Contains All the JSON data in Project
+
 export const jsonFile: any = {
 
     series : [
@@ -5717,49 +5719,310 @@ export const jsonFile: any = {
   
     countries : [
       
-      {  name: 'Australia' },
-      {  name: 'Austria' },
-      {  name: 'Belarus' },
-      {  name: 'Belgium' },
-      {  name: 'Bulgaria' },
-      {  name: 'Canada' },
-      {  name: 'Croatia' },
-      {  name: 'Cyprus' },
-      {  name: 'Czech Republic' },
-      {  name: 'Denmark' },
-      {  name: 'Estonia' },
-      {  name: 'European Union' },
-      {  name: 'Finland' },
-      {  name: 'France' },
-      {  name: 'Germany' },
-      {  name: 'Greece' },
-      {  name: 'Hungary' },
-      {  name: 'Iceland' },
-      {  name: 'Ireland' },
-      {  name: 'Italy' },
-      {  name: 'Japan' },
-      {  name: 'Latvia' },
-      {  name: 'Liechtenstein' },
-      {  name: 'Lithuania' },
-      {  name: 'Luxembourg' },
-      {  name: 'Malta' },
-      {  name: 'Monaco' },
-      {  name: 'Netherlands' },
-      {  name: 'New Zealand' },
-      {  name: 'Norway' },
-      {  name: 'Poland' },
-      {  name: 'Portugal' },
-      {  name: 'Romania' },
-      {  name: 'Russian Federationlta' },
-      {  name: 'Slovakia' },
-      {  name: 'Slovenia' },
-      {  name: 'Spain' },
-      {  name: 'Sweden' },
-      {  name: 'Switzerland' },
-      {  name: 'Turkey' },
-      {  name: 'Ukraine' },
-      {  name: 'United Kingdom' },
-      {  name: 'United States of America' },  
+      {  
+        name: 'Australia' ,
+        data : {
+          'lat' : -34.397,
+          'long': 150.644
+        }
+      },
+
+      {  
+        name: 'Austria' ,
+        data : {
+          'lat' : 47.5162,
+          'long': 14.5501
+        }
+      },
+      {  
+        name: 'Belarus' ,
+        data : {
+            'lat' : 53.7098,
+            'long': 27.9534
+          }
+      },
+      {  
+        name: 'Belgium',
+        data : {
+          'lat' : 50.5039,
+          'long': 4.4699
+        }
+      },
+      {  
+        name: 'Bulgaria',
+        data : {
+          'lat' : 42.7339,
+          'long': 25.4858
+        }
+      
+      },
+      {  
+        name: 'Canada', 
+        data : {
+          'lat' : 56.1304,
+          'long': -106.3468
+        }
+
+      },
+      {  
+        name: 'Croatia',
+        data : {
+          'lat' : 45.1000,
+          'long': 15.2000
+        } 
+      },
+      {  
+        name: 'Cyprus',
+        data : {
+          'lat' : 35.1264,
+          'long': 33.4299
+        }
+      
+      },
+      {  
+        name: 'Czech Republic',
+        data : {
+          'lat' : 49.8175,
+          'long': 15.4730
+        }
+      },
+      {  
+        name: 'Denmark',
+        data : {
+          'lat' : 56.2639,
+          'long': 9.5018
+        }
+      },
+      {  
+        name: 'Estonia',
+        data : {
+          'lat' : 58.5953,
+          'long': 25.0136
+        }
+      },
+      {  
+        name: 'European Union',
+        data : {
+          'lat' : 9.044760,
+          'long': 7.460290
+        }
+      
+      },
+      {  
+        name: 'Finland',
+        data : {
+          'lat' : 61.9241,
+          'long': 25.7482
+        }
+      },
+      {  
+        name: 'France',
+        data : {
+          'lat' : 46.2276,
+          'long': 2.2137
+        }
+      },
+      {  
+        name: 'Germany', 
+        data : {
+          'lat' : 51.1657,
+          'long': 10.4515
+        }
+      },
+      {  
+        name: 'Greece', 
+        data : {
+          'lat' : 39.0742,
+          'long': 21.8243
+        }
+      },
+      {  
+        name: 'Hungary', 
+        data : {
+          'lat' : 47.1625,
+          'long': 19.5033
+        }
+      },
+      {  
+        name: 'Iceland',
+        data : {
+          'lat' : 64.9631,
+          'long': -19.0208
+        }
+      },
+      {  
+        name: 'Ireland', 
+        data : {
+          'lat' : 53.1424,
+          'long': -8.243890
+        }
+      },
+      {  
+        name: 'Italy', 
+        data : {
+          'lat' : 41.8719,
+          'long': 12.5674
+        }
+      },
+      {  
+        name: 'Japan', 
+        data : {
+          'lat' : 36.2048,
+          'long': 138.2529
+        }
+      },
+      {  
+        name: 'Latvia', 
+        data : {
+          'lat' : 56.8796,
+          'long': 24.6032
+        }
+      },
+      {  
+        name: 'Liechtenstein',
+        data : {
+          'lat' : 47.1660,
+          'long': 9.5554
+        }
+      },
+      {  
+        name: 'Lithuania', 
+        data : {
+          'lat' : 55.1694,
+          'long': 23.8813
+        }
+      },
+      {  
+        name: 'Luxembourg', 
+        data : {
+          'lat' : 49.8153,
+          'long': 6.1296
+        }
+      },
+      {  
+        name: 'Malta', 
+        data : {
+          'lat' : 35.9375,
+          'long': 14.3754
+        }
+      },
+      {  
+        name: 'Monaco', 
+        data : {
+          'lat' : 43.7384,
+          'long': 7.4246
+        }
+      },
+      {  
+        name: 'Netherlands', 
+        data : {
+          'lat' : 52.1326,
+          'long': 5.2913
+        }
+      },
+      {  
+        name: 'New Zealand', 
+        data : {
+          'lat' : -40.900558,
+          'long': 174.8860
+        }
+      },
+      {  name: 'Norway', 
+        data : {
+          'lat' : 60.4720,
+          'long': 8.4689
+        }
+      },
+      {  
+        name: 'Poland', 
+        data : {
+          'lat' : 51.9194,
+          'long': 19.1451
+        }
+      },
+      {  
+        name: 'Portugal', 
+        data : {
+          'lat' : 39.3999,
+          'long': -8.2245
+        }
+      },
+      {  
+        name: 'Romania', 
+        data : {
+          'lat' : 45.9432,
+          'long': 24.9668
+        }
+      },
+      {  
+        name: 'Russian Federationlta', 
+        data : {
+          'lat' : 61.5240,
+          'long': -105.3188
+        }
+      },
+      {  
+        name: 'Slovakia', 
+        data : {
+          'lat' : 48.6690,
+          'long': 19.6990
+        }
+      },
+      {  
+        name: 'Slovenia', 
+        data : {
+          'lat' : 46.1512,
+          'long': 14.9955
+        }
+      },
+      {  
+        name: 'Spain', 
+        data : {
+          'lat' : 40.4637,
+          'long': 3.7492
+        }
+      },
+      {  
+        name: 'Sweden', 
+        data : {
+          'lat' : 60.1282,
+          'long': 18.6435
+        }
+      },
+      {  
+        name: 'Switzerland',
+        data : {
+          'lat' : 46.8182,
+          'long': 8.2275
+        }
+      },
+      {  name: 'Turkey', 
+          data : {
+            'lat' : 38.9637,
+            'long': 35.2433
+          }
+      },
+      {  
+        name: 'Ukraine', 
+        data : {
+          'lat' : 48.3794,
+          'long': 31.1656
+        }
+      },
+      {  
+        name: 'United Kingdom', 
+        data : {
+          'lat' : 55.3781,
+          'long': -3.4360
+        }
+      },
+      {  
+        name: 'United States of America', 
+        data : {
+          'lat' : 37.0902,
+          'long': -95.7129
+        }
+      },  
     ],
   
     category : [
@@ -5773,4 +6036,24 @@ export const jsonFile: any = {
       {  name: 'SF6' },
     ],
 
+
+  //Default values
+  coordinates: [
+    {  
+      name: 'Australia' ,
+      data : {
+        'lat' : -34.397,
+        'long': 150.644
+      }
+    },
+  ],
+
+  payload :  {
+    countryId: ["Australia"],
+    fromDate:  '1990',
+    toDate :  '1991',
+    category: 'CO2'
+  
+  }
+  
 }

@@ -30,24 +30,20 @@
 
 <!-- Toolbar -->
 <div class="router-container">
-
-  <!-- <div class="main-content"> -->
     
     <div class="toolbar " role="banner">
       <span>Gas Emmisons Graph</span>
     </div>
 
     <div class="content" >
-        <!-- <h3 class="pl-3"> Gas Emmisons Graph</h3> -->
         
         <div class="view-content-login view-content">
           <div class="row " style="margin-top: 15px;">
               <div class="col-5 ">
                 <label>Country<span class="text-danger" >*</span></label>
-                <ng-select  [(ngModel)]="payload['countryId']" placeholder = 'Select Country' [clearable]= 'true' [multiple] = 'true' (ngModelChange)="search()">
+                <ng-select  [(ngModel)]="payload['countryId']" placeholder = 'Select Country' [clearable]= 'true' [multiple] = 'true' (ngModelChange)="search(); map()">
                   <ng-option  *ngFor="let country of countries" [value]="country.name">{{country.name}}</ng-option> 
                   <!-- <ng-option  *ngFor="let country of countries" [value]="country.name"><a [routerLink]="[]" [queryParams]="{ countryId: country.name }" queryParamsHandling="merge">{{country.name}}</a></ng-option>  -->
-
                 </ng-select>
       
               </div>
@@ -57,7 +53,6 @@
                 <ng-select  [(ngModel)]="payload['fromDate']" placeholder = 'Select' (ngModelChange)="search()">
                   <ng-option  *ngFor="let year of date" [value]="year.name"> {{year.name}}</ng-option>
                   <!-- <ng-option  *ngFor="let year of date" [value]="year.name"> <a [routerLink]="[]" [queryParams]="{ fromDate: year.name }" queryParamsHandling="merge" >{{year.name}}</a></ng-option> -->
-
                 </ng-select>
       
               </div>
@@ -67,7 +62,6 @@
                 <ng-select  [(ngModel)]="payload['toDate']" placeholder = 'Select' (ngModelChange)="search()">
                   <ng-option  *ngFor="let year of date" [value]="year.name">{{year.name}}</ng-option>  
                   <!-- <ng-option  *ngFor="let year of date" [value]="year.name"><a [routerLink]="[]" [queryParams]="{ toDate: year.name }" queryParamsHandling="merge">{{year.name}}</a></ng-option>   -->
-
                 </ng-select>
       
               </div>
@@ -77,8 +71,6 @@
                 <ng-select  [(ngModel)]="payload['category']" placeholder = 'Select' (ngModelChange)="search()">
                   <ng-option  *ngFor="let cat of category" [value]="cat.name">{{cat.name}}</ng-option>  
                   <!-- <ng-option  *ngFor="let cat of category" [value]="cat.name"><a [routerLink]="[]" [queryParams]="{ category: cat.name }" queryParamsHandling="merge">{{cat.name}}</a></ng-option>   -->
-
-
                 </ng-select>
       
               </div>
@@ -93,27 +85,32 @@
               
           </div>
 
-          
-          <div class="graph-container" *ngIf = 'showgraph' >
-            <app-line-graph   [chartData]="chartData"></app-line-graph>
-          </div>
-            
-          <div class="graph-container" *ngIf = 'noData' style="color: #d23b64;">
-              Please Select Appropriate parameters.
-          </div>
+          <div class="row">
+
+              <div class="graph-container ml-auto mr-auto" *ngIf = 'showgraph' >
+                <app-line-graph   [chartData]="chartData"></app-line-graph>
+              </div>
                 
-          <div class="graph-container" *ngIf = 'loading' style="color: #3bd26d;">
-              Loading...
+              <div class="graph-container ml-auto mr-auto" *ngIf = 'noData' style="color: #d23b64;">
+                  Please Select Appropriate parameters.
+              </div>
+                    
+              <div class="graph-container ml-auto mr-auto" *ngIf = 'loading' style="color: #3bd26d;">
+                  Loading...
+              </div>
+    
+              <div class="map-container ml-auto mr-auto" >
+                <div class="full" id="map">
+                </div>
+              </div>
+
           </div>
-
-
+          
         </div>
      
     </div> 
 
 
-  <!-- </div> -->
-  
 
 </div>
 

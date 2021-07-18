@@ -74,5 +74,28 @@ export class GraphDataService {
 
     return sortedArray;
   }
-  
+ 
+  getMapData(payload : any): any {
+    var mapArr: any = [];
+
+    if(payload['countryId'].length === 0){
+      console.log("empty");
+      return [];
+    }
+    
+    for(var j =0 ; j < payload['countryId'].length ; j++){
+ 
+       for(var i = 0 ; i<this.jsonObj.countries.length; i++){
+ 
+         if(payload['countryId'][j] === this.jsonObj.countries[i].name){
+           
+          mapArr.push(this.jsonObj.countries[i]);
+           
+         }
+       }
+     }
+
+    return mapArr;
+  }
+
 }

@@ -18,7 +18,6 @@ export type ChartOptions = {
   xaxis?: ApexXAxis | any;
   yaxis?: ApexYAxis | any;
   legend?: ApexLegend | any;
-  // animations?: ApexChart | any;
   dataLabels?: ApexDataLabels | any;
   markers?: ApexMarkers | any;
   plotOptions?: ApexPlotOptions | any;
@@ -58,28 +57,17 @@ export class LineGraphComponent implements OnInit {
         animations: {
           enabled: true,
           easing: 'easeinout',
-          speed: 800,
+          speed: 400,
           animateGradually: {
-              enabled: true,
-              delay: 100
+              enabled: false,
           },
           dynamicAnimation: {
               enabled: false,
-              // speed: 350
           }
         }
 
       },
-      
-      // dataLabels: {
-      //   enabled: true,
-      //   enabledOnSeries: this.chartData['datalabels'],
-      //   offsetY: -6,
-      //   background: {
-      //     enabled: false,
-      //   },  
-      // },
-      
+            
       markers: {
         size: 6,
         hover: {
@@ -87,12 +75,14 @@ export class LineGraphComponent implements OnInit {
           sizeOffset: 2
         }
       },
+
       xaxis: {
         title: {
           text: this.chartData["xAxis"],
         },
         tickAmount: this.chartData['tickAmount']
       },
+      
       yaxis: {
         decimalsInFloat: 0,
         title: {
@@ -100,6 +90,7 @@ export class LineGraphComponent implements OnInit {
         },
         tickAmount: this.chartData['tickAmount']
       },      
+      
       legend: {
         show: this.chartData["legend"],
         showForSingleSeries: true,
@@ -110,10 +101,8 @@ export class LineGraphComponent implements OnInit {
           vertical: 0
         },
       },
-      
-      
-
     };
   
   }
+  
 }

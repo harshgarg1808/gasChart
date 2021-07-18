@@ -5,7 +5,6 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LineGraphComponent } from '../app/components/line-graph/line-graph.component'
@@ -22,7 +21,8 @@ import { LineGraphComponent } from '../app/components/line-graph/line-graph.comp
     NgApexchartsModule,
     CommonModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

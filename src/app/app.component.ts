@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {GraphDataService} from '../app/service/graph-data.service'
 import {jsonFile} from  '../app/json/jsonFile'
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/internal/operators/switchMap';
+import { Loader } from "@googlemaps/js-api-loader"
+
+//API Key
+import {config} from '../environments/config'
 
 @Component({
   selector: 'app-root',
@@ -10,74 +13,95 @@ import { switchMap } from 'rxjs/internal/operators/switchMap';
   styleUrls: ['./app.component.sass'],
  
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  
+  //Variables
   jsonObj: any = jsonFile;
-
   title = 'gasChart';
   seriesObj : any;
   seriesData : any;
   showgraph = false;
   noData = true;
   loading = false;
+  date: any = []
+  countries: any = []
+  category: any = []
+  coordinates: any = []
+  payload : any = {}
 
-  payload : any = {
-    countryId: ["Australia"],
-    fromDate:  '1990',
-    toDate :  '1991',
-    category: 'CO2'
-  
-  }
-
-  constructor(
-    private graphData: GraphDataService,
-    private route: ActivatedRoute) {}
-
-  
-  
+  //Chart Data
   chartData:any = {
     series: [],
     xAxis: 'Year',
     yAxis:  '',
-    height: window.innerHeight * 55/ 100,
-    width : window.innerWidth * 80 /100,
+    height: window.innerHeight * 50/ 100,
+    width : window.innerWidth * 60 /100,
     tickAmount: 12,
     legend: true
   };
-
- //Default values
-  date = [
-    { id: 1, name: '1990' },
-
-  ];
-  countries = [
-    {  name: 'Australia' },
-  ];
-  category = [
-    {  name: 'CO2' },
-  ];
-
-  ngOnInit(): void {
-    //GET PAGE INFO
+  
+  constructor(
+    private graphData: GraphDataService,
+    private route: ActivatedRoute) {}
+  
     
+  ngOnInit(): void {
+    
+    //GET PAGE INFO   
     this.date = this.jsonObj.date;
     this.countries = this.jsonObj.countries;
     this.category = this.jsonObj.category;
-  
+    this.payload = this.jsonObj.payload;
+    this.coordinates = this.jsonObj.coordinates;
+
     this.getgraphData()
 
-    // this.route.queryParams.subscribe(queryParams => {
-     
+    //Attempting URL State Filter
+
+    // this.route.queryParams.subscribe(queryParams => {   
     //   this.payload['countryId'] = queryParams.countryId;
     //   this.payload['fromDate'] = queryParams.fromDate;
     //   this.payload['toDate'] = queryParams.toDate;
     //   this.payload['category'] = queryParams.category;
-
     // });
+
+    //Maps Loader
+    let loader = new Loader({
+      apiKey: config.apiKey,
+    });
+
+    loader.load().then(() => {
+        this.callMaps( this.coordinates )
+    })
 
   }
 
- 
+  //Maps Data
+  callMaps( locations : any ){
+    
+    let myLatlng = new google.maps.LatLng(0,10);
+    let mapOptions = {
+      zoom: 1,
+      center: myLatlng
+    }
+    let map = new google.maps.Map(document.getElementById("map")  as HTMLElement, mapOptions);
 
+    for (var i = 0; i < locations.length; i++) {  
+      let marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i].data.lat, locations[i].data.long),
+        map: map,
+        title: locations[i].name
+      });
+      marker.setMap(map);
+    }
+  }
+
+  map(){
+    this.coordinates = this.graphData.getMapData(this.payload)
+    this.callMaps(this.coordinates);
+  }
+
+  // GraphData
   getgraphData(){
 
     this.showgraph = false;
@@ -116,6 +140,7 @@ export class AppComponent {
   
   }
 
+  //Search
   search(){
     this.showgraph = false;
     this.noData = false;
@@ -125,10 +150,9 @@ export class AppComponent {
       this.loading = false;
       this.getgraphData();
     }, 500);
-
-    // this.getgraphData()
   }
 
+  // ClearData 
   clearData(){
     this.payload = {
       countryId: [],
@@ -138,8 +162,8 @@ export class AppComponent {
     };
     this.showgraph = false;
     this.noData = true;
+    this.map();
     console.log(this.payload);
-    
   }
 
 }
